@@ -49836,6 +49836,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/css/main.css":
+/*!********************************!*\
+  !*** ./resources/css/main.css ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -49996,7 +50007,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\laragon\www\tweety7\resources\js\app.js */"./resources/js/app.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'C:\\laragon\\www\\tweety7\\resources\\css\\main.css'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+module.exports = __webpack_require__(/*! C:\laragon\www\tweety7\resources\css\main.css */"./resources/css/main.css");
 
 
 /***/ })

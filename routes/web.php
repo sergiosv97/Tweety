@@ -17,6 +17,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::middleware('auth')->group(function(){
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/tweets', 'TweetsController@index')->name('home');
+    Route::post('/tweets', 'TweetsController@store');
+
+    Route::post('/profiles/{user:username}/follow','FollowsController@store');
+    Route::get(
+        '/profiles/{user:username}/edit',
+        'ProfilesController@edit'
+    )->middleware('can:edit,user');
+});
+
+Route::get('/profiles/{user:username}','ProfilesController@show')->name('profile');
+
+// en sidebar links dentro de profile
+
+//@foreach (auth()->user()->follows as $user)
+//@endforeach 
+Auth::routes();
