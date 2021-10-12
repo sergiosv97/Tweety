@@ -22,6 +22,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/tweets', 'TweetsController@index')->name('home');
     Route::post('/tweets', 'TweetsController@store');
 
+    Route::post('/tweets/{tweet}/like', 'TweetLikesController@store');
+    Route::delete('/tweets/{tweet}/like', 'TweetLikesController@destroy');
+
     Route::post('/profiles/{user:username}/follow','FollowsController@store')->name('follow');
     Route::get(
         '/profiles/{user:username}/edit',
@@ -34,6 +37,9 @@ Route::middleware('auth')->group(function(){
     )->middleware('can:edit,user');
 
     Route::get('/explore', 'ExploreController');
+
+    //Route :: get ('file-upload', 'FileUploadController @ fileUpload') -> nombre ('file.upload');
+    //Route :: post ('file-upload', 'FileUploadController @ fileUploadPost') -> nombre ('file.upload.post');
 });
 
 Route::get('/profiles/{user:username}','ProfilesController@show')->name('profile');

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Log;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded  = [];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,7 +37,7 @@ class User extends Authenticatable
     ];
 
     public function getAvatarAttribute($value) {
-        return asset($value ?: '/images/default-avatar.jpg'); 
+        return $value ? $value: 'default-avatar.jpg'; 
     }
 
     public function setPasswordAttribute($value) {
@@ -59,27 +60,21 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function path($append = '') //this
     {
         $path = route('profile', $this->username);
 
         return $append ? "{$path}/{$append}" : $path;
     }
-
-    
-    public function follow(User $user) {
-        return $this->follows()->save($user); 
-    }
-
-
-    public function follows() {
-        return $this->belongsToMany(
-            User::class,
-             'follows','user_id',
-             'following_user_id'
-             );
-    }
-
-    
 
 }

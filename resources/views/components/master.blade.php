@@ -32,5 +32,7 @@
         
        {{$slot}}
     </div>
+
+    <script src="htpp://unpkg.com/turbolinks"></script>
 </body>
 </html>

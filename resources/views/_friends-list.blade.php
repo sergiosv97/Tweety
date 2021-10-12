@@ -7,7 +7,7 @@
                         <div>
                             <a href = "{{route('profile', $user)}}" class="flex items-center text-sm">
                                 <img
-                                    src="{{ $user->avatar}}"
+                                    src="/uploads/{{ $user->avatar}}"
                                     alt=""
                                     class="rounded-full mr-2"
                                     width="40"

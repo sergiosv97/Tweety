@@ -35,7 +35,7 @@ trait Followable
 
     public function follows()
     {
-        return $this->bellongsToMany(
+        return $this->belongsToMany(
             User::class,
             'follows',
             'user_id',

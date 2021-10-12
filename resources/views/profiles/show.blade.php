@@ -4,11 +4,11 @@
             <img
                 src="/images/default-profile-banner.png"
                 alt=""
-                class="mb-0"
+                class="mb-2"
             >
 
             <img
-                src="{{ $user->avatar }}"
+                src="/uploads/{{ $user->avatar }}"
                 alt=""
                 class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 traslate-y-1/2"
                 style="left: 50%"

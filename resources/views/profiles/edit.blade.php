@@ -55,20 +55,19 @@
                     type="file"
                     name="avatar"
                     id="avatar"
-                    
+                    accept="image/*"   
                 >
 
-                <img src="{{$user->avatar}}"
+                <img src="/uploads/{{$user->avatar}}"
                     alt = "your avatar"
                     width="40"
                 >
             
+            </div>
 
                 @error('avatar')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
-            </div>
-
         </div>
 
         <div class="mb-6">

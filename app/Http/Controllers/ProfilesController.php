@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use IlluminatecHttp\Request;
+use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Validation\Rule;
 
@@ -12,18 +12,22 @@ class ProfilesController extends Controller
     {
         return view('profiles.show',[
             'user' => $user,
-            'tweets' => $user->tweets()->paginate(50),
+            'tweets' => $user
+                ->tweets()
+                ->withLikes()
+                ->paginate(50),
         ]);
     }
 
-    public function edit(User $user)
+    public function edit(User $user, Request $request)
     {
-        $this->authorize('edit', $user);
+        //$this->authorize('edit', $user);
 
         return view('profiles.edit', compact('user'));
     }
 
-    public function update(User $user)
+
+    public function update(Request $request, User $user)
     {
         //dd(request('avatar'));
         $attributes =  request()->validate([
@@ -49,17 +53,22 @@ class ProfilesController extends Controller
                     'min:8',
                     'max:255',
                     'confirmed'
-                ],
+                ],        
+                
         ]);
 
-        if (request('avatar')){
-            $attributes['avatar'] = request('avatar')->store('avatars');
-        }
-            
+        $archivo = $request->file('avatar');
+        $filename =time().'.'.$request->file('avatar')->extension();
+        $archivo->move(public_path('uploads'), $filename);
 
-        $user->update($attributes);
+        $user->avatar = $filename;
+        $user->save();
 
-        return redirect($user->path());
+        return back()
+            ->with('success','You have successfully upload file.');
+
+
+        
     }
 }
 
