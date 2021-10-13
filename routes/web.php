@@ -31,15 +31,16 @@ Route::middleware('auth')->group(function(){
         'ProfilesController@edit'
     )->middleware('can:edit,user');
 
+    Route::get('/posts', 'PostsController@index');
+    Route::post('/posts', 'PostsController@store');
+
     Route::patch(
         '/profiles/{user:username}',
         'ProfilesController@update'
     )->middleware('can:edit,user');
 
     Route::get('/explore', 'ExploreController');
-
-    //Route :: get ('file-upload', 'FileUploadController @ fileUpload') -> nombre ('file.upload');
-    //Route :: post ('file-upload', 'FileUploadController @ fileUploadPost') -> nombre ('file.upload.post');
+    
 });
 
 Route::get('/profiles/{user:username}','ProfilesController@show')->name('profile');

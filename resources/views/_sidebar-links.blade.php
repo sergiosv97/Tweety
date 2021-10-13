@@ -13,7 +13,7 @@
                 >Profile</a></li>
             <li><a
                     class="font-bold text-lg mb-4 block"
-                    href="{{ route('profile',auth()->user())}}"
+                    href="/posts"
                 >Posts</a></li>    
             <li>
                 <form method="POST" action = "/logout">

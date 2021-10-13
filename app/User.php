@@ -60,17 +60,35 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
     }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
     public function likes()
     {
         return $this->hasMany(Like::class);
     }
 
     public function path($append = '') //this
+    {
+        $path = route('profile', $this->username);
+
+        return $append ? "{$path}/{$append}" : $path;
+    }
+
+///////////////////////////////////////////////////////////////////
+
+
+    public function posts()
+        {
+        return $this->hasMany(Post::class);
+        }
+
+     public function getAvatarAttribute1($value) {
+        return $value ? $value: 'default-avatar.jpg'; 
+    }
+
+    public function setPasswordAttribute1($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function path1($append = '')
     {
         $path = route('profile', $this->username);
 
