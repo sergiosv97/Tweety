@@ -1,5 +1,5 @@
 <div class="border border-blue-800 rounded-lg p-8 py-6 mb-8"> 
-    <form method="POST" action="/posts">
+    <form method="POST" action="/posts" enctype="multipart/form-data">
             @csrf
                 <form action="">
 
@@ -12,7 +12,7 @@
                     ></textarea>
 
                     <textarea
-                        name="file"
+                        name="description"
                         class="w-full"
                         placeholder="Escribe un nuevo blog aquí"
                         required

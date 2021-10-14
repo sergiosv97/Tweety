@@ -6,6 +6,7 @@ use Log;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -84,15 +85,16 @@ class User extends Authenticatable
         return $value ? $value: 'default-avatar.jpg'; 
     }
 
-    public function setPasswordAttribute1($value) {
-        $this->attributes['password'] = bcrypt($value);
-    }
-
     public function path1($append = '')
     {
-        $path = route('profile', $this->username);
+        $path = route('post', $this->username);
 
         return $append ? "{$path}/{$append}" : $path;
     }
+    
+    public function timeline1() {
+        $posts = Post::where('user_id', 7)->get();
+        return $posts;
+     }
 
 }

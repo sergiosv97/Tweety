@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/posts/{user:username}','PostsController@show')->name('post');
 
 Route::middleware('auth')->group(function(){
 
@@ -33,6 +34,15 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/posts', 'PostsController@index');
     Route::post('/posts', 'PostsController@store');
+    Route::get(
+        '/posts/{user:username}/edit',
+        'PostsController@edit'
+    )->middleware('can:edit,user');
+
+    Route::patch(
+        '/posts/{user:username}',
+        'PostsController@update'
+    )->middleware('can:edit,user');
 
     Route::patch(
         '/profiles/{user:username}',

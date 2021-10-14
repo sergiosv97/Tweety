@@ -15,6 +15,11 @@
                     class="font-bold text-lg mb-4 block"
                     href="/posts"
                 >Posts</a></li>    
+            <li>    
+            <li><a
+                    class="font-bold text-lg mb-4 block"
+                    href="{{ route('post',auth()->user())}}"
+                >Posts Edit</a></li>    
             <li>
                 <form method="POST" action = "/logout">
                     @csrf

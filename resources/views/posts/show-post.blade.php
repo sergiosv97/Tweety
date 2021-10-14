@@ -26,9 +26,9 @@
             <div class=flex>
                 @can ('edit', $user)
                 <a
-                 href="{{$user->path('edit')}}"
+                 href="{{$user->path1('edit')}}"
                  class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">
-                 Edit Profile
+                 Edit Post
                 </a>
                 @endcan 
 
@@ -48,7 +48,7 @@
 
         
     </header> 
-    @include ('_timeline', [
+    @include ('_timeline1', [
         'posts' => $posts   
         ])  
 </x-app>

@@ -19,6 +19,10 @@
                             </h5>
 
                             <p class="text-sm mb-3">
+                                {{ $post->title }}
+                            </p> 
+
+                            <p class="text-sm mb-3">
                                 {{ $post->description }}
                             </p>   
 				        </div>
